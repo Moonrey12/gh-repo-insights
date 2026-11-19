@@ -16,10 +16,20 @@ pip install -r requirements.txt
 python hello.py
 ```
 
+## Day 2: watchlist functions
+
+`app/watchlist.py` provides `add_repo`, `remove_repo`, and `list_repos` over
+an in-memory `set[str]` of `owner/name` strings. Invalid names raise a
+`ValueError` with a specific message.
+
+```bash
+python -m app.watchlist
+```
+
 ## Roadmap
 
 - [x] Day 1 — repo, venv, `.gitignore`, README, hello script
-- [ ] Day 2 — watchlist functions with validation
+- [x] Day 2 — watchlist functions with validation
 - [ ] Day 3 — JSON persistence
 - [ ] Day 4 — `RepoSnapshot` dataclass, `app/` + `tests/` packages
 - [ ] Day 5 — pytest suite (8+ tests)
