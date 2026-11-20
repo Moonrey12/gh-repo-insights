@@ -12,3 +12,6 @@ __pycache__/
 # Test and tooling caches
 .pytest_cache/
 .mypy_cache/
+
+# User data (the CLI's watchlist)
+data/watchlist.json
