@@ -14,6 +14,10 @@ python -m venv .venv
 .venv\Scripts\activate        # Windows
 pip install -r requirements.txt
 python hello.py
+
+python -m app.cli add octocat/Hello-World
+python -m app.cli list
+python -m app.cli remove octocat/Hello-World
 ```
 
 ## Day 2: watchlist functions
@@ -55,12 +59,14 @@ app/__init__.py          marks app as a package
 app/watchlist.py         in-memory operations + validation
 app/storage.py           JSON load/save
 app/models.py            RepoSnapshot dataclass
+app/cli.py               argparse command-line interface
 tests/__init__.py        marks tests as a package
 tests/conftest.py        shared fixtures
 tests/test_imports.py    import smoke tests
 tests/test_watchlist.py  watchlist tests
 tests/test_storage.py    JSON persistence tests
 tests/test_models.py     dataclass tests
+tests/test_cli.py        CLI tests
 ```
 
 ## Day 5: tests
@@ -75,6 +81,18 @@ python -m pytest -q       # 29 passed
 python -m pytest -v       # one line per test
 ```
 
+## Day 6: CLI
+
+`app/cli.py` uses `argparse` to expose `add`, `list` and `remove`. Each
+command loads the JSON watchlist, changes it in memory, and saves it back.
+Invalid names print an error and exit with code 1.
+
+```bash
+python -m app.cli add owner/name
+python -m app.cli list
+python -m app.cli remove owner/name
+```
+
 ## Roadmap
 
 - [x] Day 1 — repo, venv, `.gitignore`, README, hello script
@@ -82,4 +100,4 @@ python -m pytest -v       # one line per test
 - [x] Day 3 — JSON persistence
 - [x] Day 4 — `RepoSnapshot` dataclass, `app/` + `tests/` packages
 - [x] Day 5 — pytest suite (8+ tests)
-- [ ] Day 6 — argparse CLI
+- [x] Day 6 — argparse CLI
