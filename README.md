@@ -56,7 +56,23 @@ app/watchlist.py         in-memory operations + validation
 app/storage.py           JSON load/save
 app/models.py            RepoSnapshot dataclass
 tests/__init__.py        marks tests as a package
+tests/conftest.py        shared fixtures
 tests/test_imports.py    import smoke tests
+tests/test_watchlist.py  watchlist tests
+tests/test_storage.py    JSON persistence tests
+tests/test_models.py     dataclass tests
+```
+
+## Day 5: tests
+
+The `tests/` package has 29 passing tests covering the watchlist, JSON
+storage, and the `RepoSnapshot` model. Shared setup lives in
+`tests/conftest.py`; file tests use pytest's `tmp_path` fixture so the real
+`data/watchlist.json` is never touched.
+
+```bash
+python -m pytest -q       # 29 passed
+python -m pytest -v       # one line per test
 ```
 
 ## Roadmap
@@ -65,5 +81,5 @@ tests/test_imports.py    import smoke tests
 - [x] Day 2 — watchlist functions with validation
 - [x] Day 3 — JSON persistence
 - [x] Day 4 — `RepoSnapshot` dataclass, `app/` + `tests/` packages
-- [ ] Day 5 — pytest suite (8+ tests)
+- [x] Day 5 — pytest suite (8+ tests)
 - [ ] Day 6 — argparse CLI
